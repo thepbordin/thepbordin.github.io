@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans_Thai } from "next/font/google";
-import { routing } from "@/i18n/routing";
-import { notFound } from "next/navigation";
-import "@/app/globals.css";
-import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { IBM_Plex_Sans_Thai } from "next/font/google";
+import { notFound } from "next/navigation";
 
 const IBMPlexSansThai = IBM_Plex_Sans_Thai({
   subsets: ["latin"],
