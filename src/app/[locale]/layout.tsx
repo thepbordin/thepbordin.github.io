@@ -1,3 +1,5 @@
+import "@/app/globals.css";
+import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -14,13 +16,16 @@ export const metadata: Metadata = {
   description: "Thepbordin Jaiinsom's Personal Website",
 };
 
-export default async function RootLayout({
-  children,
-  params: { locale },
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
   params: { locale: string };
-}>) {
+}
+
+export default async function RootLayout({
+  children,
+  params,
+}: RootLayoutProps) {
+  const { locale } = await params;
   if (!routing.locales.includes(locale as "en" | "th")) notFound();
   const messages = await getMessages();
 
