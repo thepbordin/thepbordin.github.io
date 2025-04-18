@@ -16,7 +16,7 @@ export default {
       },
       fontFamily: {
         sans: ["var(--font-ibm-plex-sans-thai)", "sans-serif"],
-        serif: ["var(--font-ibm-plex-serif)", "serif"],
+        serif: ["var(--font-playfair-display)", "serif"],
       },
     },
   },

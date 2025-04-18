@@ -3,7 +3,7 @@ import { routing } from "@/i18n/routing";
 import NextIntlProvider from "@/providers/NextIntlProvider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import type { Metadata } from "next";
-import { IBM_Plex_Sans_Thai, IBM_Plex_Serif } from "next/font/google";
+import { IBM_Plex_Sans_Thai, Playfair_Display } from "next/font/google";
 import { notFound } from "next/navigation";
 
 const IBMPlexSansThai = IBM_Plex_Sans_Thai({
@@ -12,10 +12,10 @@ const IBMPlexSansThai = IBM_Plex_Sans_Thai({
   variable: "--font-ibm-plex-sans-thai",
 });
 
-const IBMPlexSerif = IBM_Plex_Serif({
+const PlayfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-  variable: "--font-ibm-plex-serif",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-playfair-display",
 });
 
 export const metadata: Metadata = {
@@ -39,7 +39,7 @@ export default async function RootLayout({
     <html lang={locale} className="bg-background" suppressHydrationWarning>
       <NextIntlProvider locale={locale}>
         <body
-          className={`${IBMPlexSansThai.variable} ${IBMPlexSerif.variable} min-h-scree relative flex h-full font-sans antialiased`}
+          className={`${IBMPlexSansThai.variable} ${PlayfairDisplay.variable} min-h-scree relative flex h-full font-sans antialiased`}
         >
           <ThemeProvider>
             <div
