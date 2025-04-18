@@ -14,6 +14,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ["var(--font-ibm-plex-sans-thai)", "sans-serif"],
+        serif: ["var(--font-ibm-plex-serif)", "serif"],
+      },
     },
   },
   plugins: [

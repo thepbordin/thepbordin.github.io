@@ -39,7 +39,7 @@ export default async function RootLayout({
     <html lang={locale} className="bg-background" suppressHydrationWarning>
       <NextIntlProvider locale={locale}>
         <body
-          className={`${IBMPlexSansThai.className} ${IBMPlexSerif.variable} min-h-scree relative flex h-full antialiased`}
+          className={`${IBMPlexSansThai.variable} ${IBMPlexSerif.variable} min-h-scree relative flex h-full font-sans antialiased`}
         >
           <ThemeProvider>
             <div
