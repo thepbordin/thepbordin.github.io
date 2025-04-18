@@ -5,30 +5,72 @@ import {
   MobileNavMenu,
   MobileNavToggle,
   Navbar,
-  NavbarButton,
   NavbarLogo,
   NavBody,
   NavItems,
 } from "@/components/ui/Navbar/resizable-navbar";
-import { useState } from "react";
+import { Button, Spacer } from "@heroui/react";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export function NavbarSection() {
   const navItems = [
     {
-      name: "Features",
-      link: "#features",
+      name: "W-'M-I",
+      link: "#whoami",
     },
     {
-      name: "Pricing",
-      link: "#pricing",
+      name: "About",
+      link: "#about",
     },
     {
-      name: "Contact",
-      link: "#contact",
+      name: "Projects",
+      link: "#projects",
+    },
+    {
+      name: "Awards",
+      link: "#awards",
     },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  const renderThemeChanger = () => {
+    if (!mounted) {
+      return (
+        <Button
+          isIconOnly
+          variant="bordered"
+          color="primary"
+          aria-label="Loading theme"
+          isDisabled
+        />
+      );
+    }
+
+    return (
+      <Button
+        isIconOnly
+        variant="light"
+        color="primary"
+        aria-label="Toggle theme"
+        onPress={handleThemeSwitch}
+      >
+        {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+      </Button>
+    );
+  };
 
   return (
     <>
@@ -38,8 +80,11 @@ export function NavbarSection() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            {renderThemeChanger()}
+
+            <Button color="primary" className="text-white">
+              Contact Me
+            </Button>
           </div>
         </NavBody>
 
@@ -68,24 +113,25 @@ export function NavbarSection() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
+              <Button
+                onPress={() => setIsMobileMenuOpen(false)}
+                color="primary"
                 className="w-full"
               >
                 Login
-              </NavbarButton>
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
+              </Button>
+              <Button
+                onPress={() => setIsMobileMenuOpen(false)}
+                color="primary"
                 className="w-full"
               >
                 Book a call
-              </NavbarButton>
+              </Button>
             </div>
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
+      <Spacer y={32} id="navbar-spacer" />
     </>
   );
 }
