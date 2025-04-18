@@ -1,14 +1,21 @@
 import "@/app/globals.css";
 import { routing } from "@/i18n/routing";
+import NextIntlProvider from "@/providers/NextIntlProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import { IBM_Plex_Sans_Thai } from "next/font/google";
+import { IBM_Plex_Sans_Thai, IBM_Plex_Serif } from "next/font/google";
 import { notFound } from "next/navigation";
 
 const IBMPlexSansThai = IBM_Plex_Sans_Thai({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-ibm-plex-sans-thai",
+});
+
+const IBMPlexSerif = IBM_Plex_Serif({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-ibm-plex-serif",
 });
 
 export const metadata: Metadata = {
@@ -27,19 +34,23 @@ export default async function RootLayout({
 }: RootLayoutProps) {
   const { locale } = await params;
   if (!routing.locales.includes(locale as "en" | "th")) notFound();
-  const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <NextIntlClientProvider messages={messages}>
+    <html lang={locale} className="bg-background" suppressHydrationWarning>
+      <NextIntlProvider locale={locale}>
         <body
-          className={`${IBMPlexSansThai.className} relative flex h-full min-h-screen antialiased`}
+          className={`${IBMPlexSansThai.className} ${IBMPlexSerif.variable} min-h-scree relative flex h-full antialiased`}
         >
-          <div id="scroll-wrapper" className="flex flex-grow flex-col">
-            {children}
-          </div>
+          <ThemeProvider>
+            <div
+              id="scroll-wrapper"
+              className="flex w-screen flex-grow flex-col"
+            >
+              {children}
+            </div>
+          </ThemeProvider>
         </body>
-      </NextIntlClientProvider>
+      </NextIntlProvider>
     </html>
   );
 }
