@@ -1,9 +1,13 @@
-import { useTranslations } from 'next-intl';
-import React from 'react'
+import Hero from "@/components/sections/Hero";
+import { NavbarSection as Navbar } from "@/components/sections/Narbar";
+import { useTranslations } from "next-intl";
 
 export default function page() {
-    const t = useTranslations();
+  const t = useTranslations();
   return (
-    <div>page</div>
-  )
+    <>
+      <Navbar />
+      <Hero />
+    </>
+  );
 }

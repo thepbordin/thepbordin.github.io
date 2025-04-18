@@ -32,8 +32,12 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <NextIntlClientProvider messages={messages}>
-        <body className={`${IBMPlexSansThai.className} antialiased`}>
-          {children}
+        <body
+          className={`${IBMPlexSansThai.className} relative flex h-full min-h-screen antialiased`}
+        >
+          <div id="scroll-wrapper" className="flex flex-grow flex-col">
+            {children}
+          </div>
         </body>
       </NextIntlClientProvider>
     </html>
