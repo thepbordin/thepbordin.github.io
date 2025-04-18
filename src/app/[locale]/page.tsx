@@ -1,5 +1,6 @@
+"use client";
 import Hero from "@/components/sections/Hero";
-import { NavbarSection as Navbar } from "@/components/sections/Narbar";
+import { NavbarSection as Navbar } from "@/components/sections/Navbar";
 import { useTranslations } from "next-intl";
 
 export default function page() {
